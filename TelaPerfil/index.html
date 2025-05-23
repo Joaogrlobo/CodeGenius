@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil - CodeGenius</title>
+  <link rel="stylesheet" href="/TelaPerfil/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <button class="back-btn" onclick="goBack()">←</button>
+      <h2>CodeGenius</h2>
+      <a href="#" class="logout" onclick="logout()">Logout</a>
+    </header>
+
+    <section class="profile-section">
+      <div class="avatar-container">
+        <img src="https://via.placeholder.com/80" alt="Foto do usuário" id="userPhoto">
+        <button class="edit-icon" onclick="editPhoto()">✎</button>
+      </div>
+      <div class="username">
+        <span id="userName">Lucas</span>
+        <button class="edit-icon" onclick="editName()">✎</button>
+      </div>
+    </section>
+
+    <hr>
+
+    <section class="history">
+      <h3>Histórico de Quizzes</h3>
+      <div class="quiz-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
+        <span>Java</span>
+      </div>
+    </section>
+  </div>
+
+  <script src="/TelaPerfil/script.js"></script>
+</body>
+</html>

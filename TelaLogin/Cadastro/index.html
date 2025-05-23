@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CodeGenius</title>
+  <link rel="stylesheet" href="/TelaLogin/Cadastro/style.css" />
+</head>
+<body>
+  <div class="container">
+   
+    <div id="loginScreen">
+      <h2>CodeGenius</h2>
+      <div class="form-box">
+        <label>
+          <input type="email" id="loginEmail" placeholder="E-mail" />
+          <span class="error" id="loginEmailError"></span>
+        </label>
+        <label>
+          <input type="password" id="loginPassword" placeholder="Senha" />
+          <span class="error" id="loginPasswordError"></span>
+        </label>
+        <a href="#" class="forgot">Esqueceu sua senha?</a>
+        <button class="primary-btn" onclick="handleLogin()">Entrar</button>
+        <div class="divider">OU</div>
+        <button class="google-btn">G+</button>
+        <p>É novo por aqui? <a href="#" onclick="toggleScreens()">Cadastre-se</a></p>
+      </div>
+    </div>
+
+    
+    <div id="registerScreen" style="display: none;">
+      <h2>CodeGenius</h2>
+      <h3 class="subtitle">Criar uma conta</h3>
+      <div class="form-box">
+        <label>
+          <input type="text" id="registerName" placeholder="Seu nome" />
+          <span class="error" id="registerNameError"></span>
+        </label>
+        <label>
+          <input type="email" id="registerEmail" placeholder="E-mail" />
+          <span class="error" id="registerEmailError"></span>
+        </label>
+        <label>
+          <input type="password" id="registerPassword" placeholder="Senha" />
+          <span class="error" id="registerPasswordError"></span>
+        </label>
+        <button class="primary-btn" onclick="handleRegister()">Entrar</button>
+        <div class="divider">OU</div>
+        <button class="google-btn">G+</button>
+        <p>Já tem uma conta? <a href="#" onclick="toggleScreens()">Faça login</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="/TelaLogin/Cadastro/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      background-color: white;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+    .back-arrow {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+    header h1 {
+      font-size: 20px;
+      margin: 0 auto;
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+    .stats-container {
+      padding: 16px;
+    }
+    .card {
+      background-color: white;
+      padding: 16px;
+      margin-bottom: 16px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .card h2 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    .stat {
+      display: flex;
+      justify-content: space-between;
+      margin: 4px 0;
+    }
+    .label {
+      color: #666;
+    }
+    .value {
+      font-weight: bold;
+    }

@@ -1,0 +1,95 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 90%;
+  max-width: 350px;
+  padding: 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #003366;
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input.error-border {
+  border: 1px solid #c1443c;
+}
+
+.primary-btn {
+  padding: 12px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.google-btn {
+  padding: 12px;
+  background-color: #c1443c;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.divider {
+  text-align: center;
+  margin: 10px 0;
+  font-weight: bold;
+  color: #999;
+}
+
+a {
+  color: #c1443c;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.forgot {
+  font-size: 12px;
+  text-align: right;
+}
+
+.error {
+  color: #c1443c;
+  font-size: 12px;
+  margin-top: 2px;
+  display: block;
+  height: 14px;
+}

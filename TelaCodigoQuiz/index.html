@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeGenius - Quiz</title>
+  <link rel="stylesheet" href="/TelaCodigoQuiz/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <button class="back-btn" onclick="goBack()">←</button>
+      <h2>CodeGenius</h2>
+    </header>
+
+    <div class="quiz-box">
+      <label for="quizCode">Código do quiz</label>
+      <input type="text" id="quizCode" placeholder=" " />
+      <span class="error" id="quizCodeError"></span>
+      <button class="play-btn" onclick="playQuiz()">Jogar</button>
+    </div>
+  </div>
+
+  <script src="/TelaCodigoQuiz/script.js"></script>
+</body>
+</html>
