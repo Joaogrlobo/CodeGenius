@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CodeGenius - Criar Quiz</title>
-  <link rel="stylesheet" href="/TelaCriarQuiz/style.css" />
+  <link rel="stylesheet" href="/TelaCriarQuiz/style-improved.css" />
 </head>
 <body>
 <header>
-  <img class="back-arrow" src="https://img.icons8.com/ios-glyphs/30/000000/left.png" alt="Voltar">
+  <button class="back-btn" onclick="goBack()">←</button>
   <h1>CodeGenius</h1>
 </header>
 
 <form id="quizForm" style="max-width:600px;margin:0 auto;">
   <div class="section">
     <label>Título do Quiz:</label>
-    <input type="text" name="titulo" required>
+    <input type="text" name="titulo" required />
   </div>
   <div class="section">
     <label>Nível:</label>
@@ -27,13 +27,13 @@
   </div>
   <div class="section">
     <label>Tempo (min):</label>
-    <input type="number" name="tempo" min="1" required>
+    <input type="number" name="tempo" min="1" required />
   </div>
   <div class="section">
     <label for="quizIcon">Ícone do Quiz:</label>
-    <input type="file" id="quizIcon" name="quizIcon" accept="image/*">
+    <input type="file" id="quizIcon" name="quizIcon" accept="image/*" />
   </div>
-  <hr>
+  <hr />
   <h3>Perguntas</h3>
   <div id="perguntas-container"></div>
   <div class="btn-container">

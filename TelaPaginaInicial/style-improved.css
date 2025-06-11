@@ -1,0 +1,140 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0078d4;
+  margin: 0;
+}
+
+.search-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  filter: brightness(0) saturate(100%) invert(29%) sepia(88%) saturate(2551%) hue-rotate(196deg) brightness(95%) contrast(101%);
+}
+
+.search-icon:hover {
+  transform: scale(1.1);
+}
+
+.Quizzes {
+  padding: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.Quizzes h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #0078d4;
+}
+
+.icons {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+}
+
+.icons img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  background-color: #ffffff;
+  padding: 12px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.icons img:hover {
+  box-shadow: 0 8px 20px rgba(0, 120, 212, 0.4);
+  transform: translateY(-6px);
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+footer div {
+  text-align: center;
+  font-size: 14px;
+  color: #0078d4;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+footer div:hover {
+  color: #005a9e;
+}
+
+footer div img {
+  margin-bottom: 4px;
+  filter: brightness(0) saturate(100%) invert(29%) sepia(88%) saturate(2551%) hue-rotate(196deg) brightness(95%) contrast(101%);
+  transition: filter 0.3s ease;
+}
+
+footer div:hover img {
+  filter: brightness(0) saturate(100%) invert(44%) sepia(100%) saturate(749%) hue-rotate(192deg) brightness(92%) contrast(101%);
+}
+
+.quiz-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 8px;
+    text-align: center;
+    color: #222;
+}
+
+.quiz-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-edit {
+    margin-top: 10px;
+    padding: 6px 16px;
+    background-color: #0078d4;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+.btn-edit:hover {
+    background-color: #005a9e;
+}

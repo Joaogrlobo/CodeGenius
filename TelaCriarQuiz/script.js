@@ -1,5 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const perguntasContainer = document.getElementById('perguntas-container');
+const perguntasContainer = document.getElementById('perguntas-container');
   for (let i = 1; i <= 4; i++) {
     const div = document.createElement('div');
     div.className = 'section';
@@ -22,7 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const form = e.target;
     const formData = new FormData(form);
-    formData.append('criado_por', 1); 
+
+    const usuario = JSON.parse(localStorage.getItem('usuario'));
+if (!usuario || !usuario.id) {
+  alert('Usuário não autenticado!');
+  return;
+}
+formData.append('criado_por', usuario.id);
 
     const perguntas = [];
     for (let i = 1; i <= 4; i++) {
@@ -45,7 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       const data = await res.json();
       if (res.ok) {
-        alert('Quiz criado com sucesso!');
+       
+        alert(`Quiz criado com sucesso!\nID do quiz: ${data.quizId || data.id || '(ID não retornado)'}`);
         form.reset();
       } else {
         alert(data.error || 'Erro ao criar quiz');
@@ -54,4 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Erro de conexão');
     }
   });
-});
+
+
+function goBack() {
+  window.history.back(); 
+}
+

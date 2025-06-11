@@ -9,29 +9,53 @@ function getQuizIdFromUrl() {
 const quizId = getQuizIdFromUrl();
 
 document.addEventListener('DOMContentLoaded', () => {
+  const quizId = getQuizIdFromUrl();
   if (!quizId) {
-    document.getElementById('pergunta').textContent = 'Quiz não encontrado.';
+    alert('Quiz não encontrado!');
     return;
   }
   fetch(`/api/pergunta/${quizId}`)
     .then(res => res.json())
     .then(data => {
-      perguntas = data.perguntas || [data];
-      showQuestion();
+      if (data.perguntas && data.perguntas.length > 0) {
+        perguntas = data.perguntas;
+        showQuestion();
+      } else {
+        alert('Nenhuma pergunta encontrada para este quiz.');
+      }
     })
     .catch(err => {
-      document.getElementById('pergunta').textContent = 'Erro ao carregar pergunta.';
-      console.error('Erro ao buscar pergunta:', err);
+      console.error('Erro ao buscar perguntas:', err);
+      alert('Erro ao carregar quiz.');
     });
 });
 
 function showQuestion() {
-  
-  if (currentQuestion >= 4 || currentQuestion >= perguntas.length) {
+  if (currentQuestion >= perguntas.length) {
     document.getElementById('pergunta').textContent = 'Quiz finalizado!';
     document.getElementById('respostas').innerHTML = '';
+
+    
+    const userId = localStorage.getItem('userId');
+    const pontuacao = window.acertos || 0;
+    fetch('/api/quizzes/resultado', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        usuario_id: userId,
+        quiz_id: getQuizIdFromUrl(),
+        pontuacao: pontuacao,
+        acertos: pontuacao
+      })
+    }).then(() => {
+      setTimeout(() => {
+        window.location.href = `/TelaRanking/?id=${getQuizIdFromUrl()}`;
+      }, 1500);
+    });
+
     return;
   }
+
   const pergunta = perguntas[currentQuestion];
   document.getElementById('pergunta').textContent = pergunta.enunciado;
   const respostasDiv = document.getElementById('respostas');
@@ -50,6 +74,7 @@ function checkAnswer(button, isCorrect) {
   if (isCorrect) {
     button.classList.add("correct");
     alert("Resposta correta!");
+    window.acertos = (window.acertos || 0) + 1;
   } else {
     button.classList.add("incorrect");
     alert("Resposta incorreta.");

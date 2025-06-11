@@ -20,17 +20,21 @@ router.post('/', upload.single('quizIcon'), async (req, res) => {
   const { titulo, nivel, tempo, criado_por } = req.body;
   let perguntas = [];
   try {
-    
     perguntas = JSON.parse(req.body.perguntas);
   } catch (e) {
     return res.status(400).json({ error: 'Formato de perguntas inválido.' });
   }
   const iconPath = req.file ? '/uploads/' + req.file.filename : null;
 
+  // Validação: usuário existe?
+  const [usuarios] = await pool.execute('SELECT id FROM usuarios WHERE id = ?', [criado_por]);
+  if (usuarios.length === 0) {
+    return res.status(400).json({ error: 'Usuário criador não existe.' });
+  }
+
   const conn = await pool.getConnection();
   try {
     await conn.beginTransaction();
-    
     const [quizResult] = await conn.execute(
       'INSERT INTO quizzes (titulo, nivel, tempo, criado_por, icone) VALUES (?, ?, ?, ?, ?)',
       [titulo, nivel, tempo, criado_por, iconPath]
@@ -51,7 +55,7 @@ router.post('/', upload.single('quizIcon'), async (req, res) => {
       }
     }
     await conn.commit();
-    res.status(201).json({ message: 'Quiz criado!' });
+    res.status(201).json({ message: 'Quiz criado!', quizId });
   } catch (err) {
     await conn.rollback();
     console.error(err); 
@@ -72,14 +76,84 @@ router.get('/', async (req, res) => {
 });
 
 
-router.delete('/:id', async (req, res) => {
-  const { id } = req.params;
+router.get('/search', async (req, res) => {
+  const { q } = req.query;
+  if (!q) return res.status(400).json({ error: 'Parâmetro de busca não informado.' });
   try {
-    await pool.execute('DELETE FROM quizzes WHERE id = ?', [id]);
-    res.json({ message: 'Quiz deletado!' });
+    const [rows] = await pool.execute(
+      "SELECT * FROM quizzes WHERE titulo LIKE ?",
+      [`%${q}%`]
+    );
+    res.json(rows);
   } catch (err) {
-    res.status(500).json({ error: 'Erro ao deletar quiz' });
+    res.status(500).json({ error: 'Erro ao buscar quizzes' });
   }
+});
+
+
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    // Exemplo: pegue o id do usuário autenticado (via sessão, token, etc)
+    // const usuarioId = req.usuario.id;
+    // Aqui, só como exemplo, não está implementado autenticação:
+    try {
+        // Primeiro, busque o quiz
+        const [rows] = await pool.execute('SELECT criado_por FROM quizzes WHERE id = ?', [id]);
+        if (rows.length === 0) return res.status(404).json({ error: 'Quiz não encontrado' });
+
+        // Se quiser checar o criador, faça aqui (exemplo):
+        // if (rows[0].criado_por !== usuarioId) return res.status(403).json({ error: 'Sem permissão' });
+
+        await pool.execute('DELETE FROM quizzes WHERE id = ?', [id]);
+        res.json({ message: 'Quiz deletado!' });
+    } catch (err) {
+        res.status(500).json({ error: 'Erro ao deletar quiz' });
+    }
+});
+
+
+router.post('/resultado', async (req, res) => {
+  const { usuario_id, quiz_id, pontuacao, acertos } = req.body;
+  try {
+    await pool.execute(
+      'INSERT INTO resultados (usuario_id, quiz_id, pontuacao, acertos) VALUES (?, ?, ?, ?)',
+      [usuario_id, quiz_id, pontuacao, acertos]
+    );
+    res.status(201).json({ message: 'Resultado salvo com sucesso!' });
+  } catch (err) {
+    res.status(500).json({ error: 'Erro ao salvar resultado', details: err.message });
+  }
+});
+
+
+router.get('/ranking', async (req, res) => {
+  try {
+    const [rows] = await pool.execute(
+      `SELECT u.id, u.nome, MAX(r.pontuacao) as pontuacao
+       FROM resultados r
+       JOIN usuarios u ON r.usuario_id = u.id
+       GROUP BY u.id
+       HAVING pontuacao > 0
+       ORDER BY pontuacao DESC
+       LIMIT 10`
+    );
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: 'Erro ao buscar ranking', details: err.message });
+  }
+});
+
+router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const [rows] = await pool.execute('SELECT * FROM quizzes WHERE id = ?', [id]);
+        if (rows.length === 0) {
+            return res.status(404).json({ error: 'Quiz não encontrado' });
+        }
+        res.json(rows[0]);
+    } catch (err) {
+        res.status(500).json({ error: 'Erro ao buscar quiz' });
+    }
 });
 
 module.exports = router;

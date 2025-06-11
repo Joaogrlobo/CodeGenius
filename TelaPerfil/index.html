@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfil - CodeGenius</title>
-  <link rel="stylesheet" href="/TelaPerfil/style.css">
+  <link rel="stylesheet" href="/TelaPerfil/style-improved.css">
 </head>
 <body>
   <div class="container">
     <header>
       <button class="back-btn" onclick="goBack()">←</button>
       <h2>CodeGenius</h2>
-      <a href="#" class="logout" onclick="logout()">Logout</a>
+      <a href="#" class="logout" onclick="logout(); return false;">Sair</a>
     </header>
 
     <section class="profile-section">
@@ -29,13 +29,9 @@
 
     <section class="history">
       <h3>Histórico de Quizzes</h3>
-      <div class="quiz-item">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
-        <span>Java</span>
-      </div>
+      
     </section>
   </div>
-
-  <script src="/TelaPerfil/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

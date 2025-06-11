@@ -1,6 +1,15 @@
 function toggleScreens() {
-  document.getElementById("loginScreen").style.display = "none";
-  document.getElementById("registerScreen").style.display = "block";
+  const loginScreen = document.getElementById("loginScreen");
+  const registerScreen = document.getElementById("registerScreen");
+  if (loginScreen.style.display === "none") {
+    
+    loginScreen.style.display = "block";
+    registerScreen.style.display = "none";
+  } else {
+    
+    loginScreen.style.display = "none";
+    registerScreen.style.display = "block";
+  }
   clearAllErrors();
 }
 
