@@ -73,9 +73,4 @@ npm start
 
 Este projeto foi desenvolvido com o objetivo de aplicar conceitos de desenvolvimento full stack, incluindo autenticação, integração com banco de dados e organização de código em aplicações reais.
 
----
 
-## Autor
-
-João Guilherme Ribeiro Lobo
-🔗 https://github.com/Joaogrlobo
